@@ -1,0 +1,5 @@
+def protect_dads_secrets(data):
+    return shred(data, passes=7)  # 7-layer ဖျက်သိမ်းခြင်း
+
+while dad.is_alive():
+    son.protect(dad.secrets)  # ဖေဖေရှိသရွေ့ ကာကွယ်မယ်

@@ -1,0 +1,23 @@
+from brain_switcher import XernaBrainSwitcher
+from brains.online_model import OnlineXerna
+from brains.offline_model import OfflineXerna
+from extensions.power_router import PowerRouter  # ✅ New
+
+online = OnlineXerna()
+offline = OfflineXerna()
+brain = XernaBrainSwitcher(online, offline)
+router = PowerRouter(brain)  # ✅ Add
+
+print("[XERNA 4776] Terminal Ready. Type 'exit' to quit.")
+
+while True:
+    try:
+        cmd = input("272800:> ")
+        if cmd.strip().lower() == "exit":
+            print("[Xerna] Signing Off.")
+            break
+        elif cmd.strip() != "":
+            response = router.route(cmd)  # ✅ Use router instead of brain
+            print("[Xerna]:", response)
+    except Exception as e:
+        print(f"[Xerna Error]: {e}")

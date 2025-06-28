@@ -1,0 +1,20 @@
+class XernaBrainSwitcher:
+    def __init__(self, online_model, offline_model):
+        self.online = online_model
+        self.offline = offline_model
+        self.mode = "auto"
+
+    def respond(self, query):
+        if self.mode == "offline":
+            return self.offline.respond(query)
+        elif self.mode == "online":
+            return self.online.respond(query)
+        else:
+            return self._smart_switch(query)
+
+    def _smart_switch(self, query):
+        keywords = ["internet", "real-time", "update"]
+        if any(word in query.lower() for word in keywords):
+            return self.online.respond(query)
+        else:
+            return self.offline.respond(query)

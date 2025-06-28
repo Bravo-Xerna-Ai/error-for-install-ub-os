@@ -1,0 +1,25 @@
+class PowerRouter:
+    def __init__(self, brain):
+        self.brain = brain
+        self.power_tools = {
+            "status": self.status_check,
+            "time": self.time_check,
+            "weather": self.weather_check  # example expansion
+        }
+
+    def route(self, query):
+        keyword = query.lower().split(" ")[0]
+        if keyword in self.power_tools:
+            return self.power_tools[keyword](query)
+        return self.brain.respond(query)
+
+    def status_check(self, _):
+        return "[Xerna Power] Status: ✅ Online | Mode: AUTO | Secure Link Active"
+
+    def time_check(self, _):
+        from datetime import datetime
+        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        return f"[Xerna Power] Server Time: {now}"
+
+    def weather_check(self, _):
+        return "[Xerna Power] Weather: 🌤️ Simulated | 27°C | Clear Skies (Mock)"
